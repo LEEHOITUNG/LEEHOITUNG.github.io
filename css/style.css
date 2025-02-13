@@ -1,0 +1,707 @@
+@charset "UTF-8";
+
+/* Reset CSS */
+@import url("reset.css");
+
+@media (max-width: 768px) {
+    .content-title, .store-title {
+        font-size: 4vw; 
+    }
+    .content-group {
+        flex-direction: column; 
+    }
+    .content-group .photo, .content-group .text {
+        width: 100%; 
+    }
+    .content-group .text h1 {
+        font-size: 3vw;
+    }
+    .store-text {
+        font-size: 2.5vw;
+    }
+
+    .works_wrapper {
+        height: auto;
+    }
+
+    .modal-content {
+        width: 80%;
+      }
+
+
+}
+
+html {
+    font-family: 'Quicksand';
+}
+
+:root {
+    --mainPurple: #C8C5FF;
+    --mainPink: #FBE6FC;
+    --texBlack: #434343;
+}
+
+body {
+    font-family:  "Kiwi Maru", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--texBlack);
+    background-color: var(--mainPurple);
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+/* animate */
+
+.fuwaAnime {
+    animation: fuwaAnime 3s ease-in-out infinite alternate;
+    /* background: url(../SVG/heart.svg) no-repeat center center / 60px auto; */
+    display: inline-block;
+    transition: 0.2s ease-in-out;
+    width: 70px;
+    height: 70px;
+    margin-top: 15px;
+}
+
+@keyframes fuwaAnime {
+    0% {
+        transform: scale(1)
+    }
+
+    25% {
+        transform: scale(1.2)
+    }
+
+    50% {
+        transform: scale(1)
+    }
+
+    75% {
+        transform: scale(1.2)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+}
+
+.fadeIn {
+    animation-name: fadeInAnime;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInAnime {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.fadeRight {
+    animation-name: fadeRightAnime;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeRightAnime {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeUp {
+    animation-name: fadeUpAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeUpAnime {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.fadeInTrigger,
+.fadeUpTrigger,
+.fadeRightTrigger {
+    opacity: 0;
+}
+
+.delay-time1 {
+    animation-delay: 1s;
+}
+
+/* header */
+
+.header {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background-color: var(--mainPurple);
+    position: relative;
+}
+
+/* navigation */
+.header_navigation {
+    position: fixed;
+    top: 3vh;
+    right: 3vh;
+    z-index: 99;
+}
+
+.header_navigation ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.header_navigation li {
+    font-weight: bold;
+    margin-left: 100px;
+}
+
+
+.header_navigation li a {
+    color: #5D53B4;
+    text-decoration: none;
+}
+
+.header_navigation li a:hover {
+    transition: 0.2s;
+    color: #9E78D3;
+}
+
+/* header_main */
+
+.header_main {
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 100px auto 0px auto;
+    padding: 100px;
+}
+
+
+
+
+.header_logo {
+    height: auto;
+    position: relative;
+    /* 中心配置の基準を設定 */
+    width: 50%;
+    display: flex;
+    /* 子要素を中央揃えにする */
+    justify-content: center;
+    /* 横方向の中央揃え */
+    align-items: center;
+    /* 縦方向の中央揃え */
+    padding: 0 10px;
+    /* add animation */
+    opacity: 0;
+    animation: fadeInAnime 2s ease forwards;
+    animation-delay: 0.6s;
+
+}
+
+.header_logo img {
+    width: 100%;
+    height: auto;
+}
+
+
+.header_computer {
+
+    position: relative;
+    /* 中心配置の基準を設定 */
+    width: 45%;
+    display: flex;
+    /* 子要素を中央揃えにする */
+    justify-content: center;
+    /* 横方向の中央揃え */
+    align-items: center;
+    /* 縦方向の中央揃え */
+    margin-left: 100px;
+    /* add animation */
+    opacity: 0;
+    animation: fadeInAnime 1s ease forwards;
+    animation-delay: 0.1s;
+
+}
+
+
+.computer {
+    position: relative;
+    /* .heartの基準となる要素 */
+    width: 70%;
+    /* 画像サイズを調整 */
+}
+
+.heart {
+    position: absolute;
+    /* .computerを基準に位置を指定 */
+    transform: translate(-50%, -50%);
+    /* 中心に揃える */
+    width: 15%;
+    /* 必要に応じて調整 */
+    animation: 1.5s fuwaAnime infinite alternate ease-in-out;
+    /* アニメーション */
+}
+
+
+.header_bg {
+    position: relative;
+    background-color: #ffffff;
+    padding-bottom: 100px;
+
+}
+
+.header_bg1 {
+    top: 0;
+
+}
+
+.header_bg2 {
+    position: absolute;
+    top: 14px;
+    z-index: 99;
+}
+
+.header_bg1 img {
+    width: 100%;
+    height: 100%;
+}
+
+/*main */
+
+.main {
+    background-color: #ffffff;
+}
+
+
+/*about */
+
+.about_wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 500px;
+    margin: 0 auto;
+    padding: auto 20px;
+}
+
+.about_title h2 {
+    visibility: hidden;
+}
+
+.about_title {
+    width: 25%;
+    height: auto;
+    margin-left: 6%;
+}
+
+.about_title img {
+    width: 100%;
+    height: auto;
+}
+
+.about_main {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    width: 10%;
+    top: 23%;
+    left: 13%;
+}
+
+.about_text {
+    background-color: var(--mainPurple);
+    width: 800px;
+    height: 400px;
+    border-radius: 200px 0 0 50px;
+    padding: 80px;
+    z-index: 1;
+    position: relative;
+}
+
+.about_textbg {
+    position: absolute;
+    background-color: var(--mainPink);
+    width: 830px;
+    height: 400px;
+    border-radius: 200px 0 0 50px;
+    padding: 100px;
+    z-index: 0;
+    right: 0px;
+    top: 2px;
+}
+
+
+.text_title {
+    margin-left: 120px;
+    padding-bottom: 10px;
+}
+.text_detail h3 {
+    width: 450px;
+    border-radius: 5px;
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 5px;
+
+}
+
+.fullname {
+    font-size: 20px;
+}
+
+.halclass {
+    background-color: #9E78D3;
+    padding-left: 10px;
+    width: 200px;
+    border-radius: 5px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.text_detail p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.dream {
+    margin-top: 10px;
+}
+
+
+/* works */
+
+.works_wrapper {
+    background-color: var(--mainPurple);
+    height: 1000px;
+    border-radius: 0 0 200px 200px;
+}
+
+.works_title h2 {
+    visibility: hidden;
+}
+
+
+.works_title {
+    width: 25%;
+    height: auto;
+    margin: 50px auto;
+    text-align: center;
+
+}
+
+.works_title img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+.works_detail {
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.works_site {
+    width: 28%;
+    height: auto;
+    padding: auto;
+    background-color: var(--mainPink);
+    border: dashed 7px #ffffff;
+    ;
+    border-radius: 8px;
+    position: relative;
+}
+
+.border_change {
+    border: dashed 7px #e89cfd;
+}
+
+.work_more h3 {
+    cursor: pointer;
+    background-color: #db62af;
+    color: #ffffff;
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    text-align: center;
+    padding: 10px 20px;
+    border: solid 3px #ffffff;
+    border-radius: 99px;
+}
+
+
+.work_more:hover h3 {
+    background-color: #ffbce9;
+    color: var(--texBlack);
+    transition: 0.2s;
+}
+
+.works_top {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 100%;
+    height:auto;
+    margin-top: 15%;
+}
+
+.works_image {
+    width: 80%;
+}
+
+
+.works_image img {
+    border-radius: 8px;
+    width: 100%;
+    transform: scale(1);
+    transition: .3s ease-in-out;
+    /*移り変わる速さを変更したい場合はこの数値を変更*/
+
+}
+
+.works_image a:hover img {
+    /*hoverした時の変化*/
+    transform: scale(1.2);
+    /*拡大の値を変更したい場合はこの数値を変更*/
+}
+
+/*　画像のマスク　*/
+
+.mask {
+    border-radius: 8px;
+    display: block;
+    line-height: 0;
+    /*行の高さを0にする*/
+    overflow: hidden;
+    /*拡大してはみ出る要素を隠す*/
+}
+
+.works_text {
+    height: auto;
+    padding: 0 2% 5% 2%;
+}
+
+.works_text h3{
+font-size: 22px;
+text-align: center;
+margin-top: 20px;
+}
+
+.works_text p {
+
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.work_date {
+    position: absolute;
+    z-index: 2;
+    left: 4%;
+    top: -5%;
+    width: 10%;
+    height: 10%;
+    padding: 10%;
+    border-radius: 50%;
+    background-color: #db62af;
+    text-align: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+
+}
+
+.date_text {
+    font-size: 14px;
+    text-align: center;
+    color: rgba(255, 255, 255);
+    font-weight: bold;
+}
+
+
+.modal {
+    display: none; /* 初期状態では非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 背景を薄暗くする */
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+  }
+
+  /* モーダルの内容 */
+  .modal-content {
+    background-color: white;
+    height: auto;
+    max-height: 80%; 
+    margin: 60px  auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 50%;
+    max-width: 90%; /* 在小螢幕上限制最大寬度 */
+    text-align: center;
+    align-items: center;
+    position: relative;
+    overflow-y: auto; /* 當內容過多時顯示滾動條 */
+  }
+
+  .modal_detail {
+    width: 100%; /* 確保內容區域占滿寬度 */
+    padding:0 2% 5% 2%;
+  }
+
+
+
+
+  .modal_detail a{
+    color: #db62af;
+  }
+
+  .modal_image {
+    margin: 20px auto; 
+    height: 20%; 
+    max-width: 100%; 
+  }
+
+  .modal_image img {
+    width: 80%; 
+    max-width: 400px; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+  }
+
+  .modal_text {
+    width: 60%;
+    margin: 0 auto;
+  }
+ 
+  .modal_text h3, 
+  .modal_text p {
+    margin: 0 auto; /* 自動置中 */
+    text-align: left; /* 文字置中 */
+    word-wrap: break-word; /* 長字元自動換行 */
+    overflow-wrap: break-word; /* 防止單字過長溢出 */
+  }
+
+  .modal_text h3{
+    margin-bottom: 6px;
+    border: Var(--texBlack);
+  }
+
+  .modal_text p{
+    margin-bottom: 15px;
+  }
+
+
+
+
+  .modal_comment {
+    text-align: left;
+  }
+
+
+  /* 閉じるボタン */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+
+/* contact */
+
+
+.footer_margin {
+    background-color: #ffffff;
+    height: 150px;
+
+}
+
+.contact_wrapper {
+    padding-top: 1px;
+    background-color: var(--mainPink);
+    height: 400px;
+}
+
+
+.contact_title h2 {
+    visibility: hidden;
+}
+
+
+.contact_title {
+    width: 33%;
+    height: auto;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.contact_title img {
+    width: 100%;
+    height: auto;
+}
+
+.contact_detail {
+    width: 30%;
+    margin: 50px auto 0 auto;
+}
+
+.contact_mail,
+.contact_number {
+    font-size: 20px;
+    display: flex;
+    width: 310px;
+    margin: 0 auto;
+}
+
+.contact_mail img,
+.contact_number img {
+    width: 10%
+}
+
+.contact_mail p,
+.contact_number p {
+    margin-left: 10px;
+
+}
