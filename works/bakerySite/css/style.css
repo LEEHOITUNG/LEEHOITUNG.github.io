@@ -1,0 +1,672 @@
+@charset "utf-8";
+
+/* Reset CSS */
+@import url("reset.css");
+
+
+@media (max-width: 768px) {
+    .content-title, .store-title {
+        font-size: 4vw; 
+    }
+    .content-group {
+        flex-direction: column; 
+    }
+    .content-group .photo, .content-group .text {
+        width: 100%; 
+    }
+    .content-group .text h1 {
+        font-size: 3vw;
+    }
+    .store-text {
+        font-size: 2.5vw;
+    }
+    .header_mainvisual{
+        margin-top: 0px;
+    }
+
+    .menu_row1, .menu_row2 {
+        align-items: center; /* 水平居中對齊 */
+        padding-left: 0; /* 去掉多餘的右邊距 */
+        margin: 0;
+    }
+
+    .menu_item {
+        width: 100%; /* 適應小螢幕的寬度 */
+        margin: 0 0 20% 0; /* 僅在底部添加適中的間距 */
+        padding: 10px; /* 適當縮小內邊距 */
+    }
+
+    .menu_item h3 {
+        margin: 0.5em 0; /* 減少標題的上下間距 */
+        font-size: 18px; /* 根據小螢幕調整字體大小 */
+    }
+
+    .menu_item p {
+        font-size: 14px;
+    }
+
+    .menu_image {
+        width: 100%; /* 圖片佔滿父元素寬度 */
+        max-width: 300px; /* 限制圖片最大寬度，避免過大 */
+        margin-bottom: 10px; /* 增加圖片和文字的間距 */
+    }
+}
+
+@media (max-width: 550px) {
+    .menu_row1, .menu_row2 {
+        flex-direction: column; /* 改為豎排排列 */
+        align-items: center; /* 水平居中對齊 */
+        padding-left: 0; /* 去掉多餘的右邊距 */
+        margin: 0;
+    }
+}
+
+html{
+    scroll-behavior: smooth;
+}
+:root {
+    --mainGrey: #7A7A7A;
+    --subGrey: #B5B5B5;
+    --textWhite: #ffffff;
+    --subOrange:#FFBF80;
+}
+
+/*========= LoadingのためのCSS ===============*/
+
+/* Loading背景画面設定　*/
+#splash {
+    /*fixedで全面に固定*/
+	position: fixed;
+    top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10000;
+	background:#333;
+	text-align:center;
+	color:#fff;
+}
+
+/* Loading画像中央配置　*/
+#splash_logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* Loading アイコンの大きさ設定　*/
+#splash_logo img {
+	width:260px;
+}
+
+/* fadeUpをするアイコンの動き */
+
+.fadeUp{
+animation-name: fadeUpAnime;
+animation-duration:0.8s;
+animation-fill-mode:forwards;
+opacity: 0;
+}
+
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+	transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+	transform: translateY(0);
+  }
+}
+
+/* animation */
+
+
+.fadeIn{
+    animation-name:fadeInAnime;
+    animation-duration:1s;
+    animation-fill-mode:forwards;
+    opacity:0;
+    }
+    
+    @keyframes fadeInAnime{
+      from {
+        opacity: 0;
+      }
+    
+      to {
+        opacity: 1;
+      }
+    }
+
+.fadeUpMain {
+    animation-name: fadeUpMainAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeUpMainAnime {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.fadeLeftTrigger,
+.fadeInTrigger,
+.fadeUpTrigger {
+    opacity: 0;
+}
+
+/* アニメーションスタートの遅延時間を決めるCSS*/
+
+.delay-time02{  
+	animation-delay: 0.2s;
+}
+
+.delay-time05{  
+	animation-delay: 0.5s;
+}
+
+.delay-time1{  
+	animation-delay: 1s;
+}
+
+/*========= BODY ===============*/
+
+body {
+    font-family: "Zen Old Mincho", serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: var(--mainGrey);
+    background-image: url(../image/menubg2.png);
+    background-repeat: repeat-y;
+    color: var(--textWhite);
+}
+
+
+
+/*========= ナビゲーション ===============*/
+
+/*アクティブになったエリア*/
+#g-nav.panelactive{
+    /*position:fixed;にし、z-indexの数値を大きくして前面へ*/
+    position:fixed;
+    z-index: 998;
+	top: 0;
+	width:100%;
+    height: 100vh;
+}
+
+/*丸の拡大*/
+.circle-bg{
+    position: fixed;
+	z-index:3;
+    /*丸の形*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--subOrange);
+    /*丸のスタート位置と形状*/
+	transform: scale(0);/*scaleをはじめは0に*/
+    right:-50px;
+    top:calc(50% - 50px);/*50%から円の半径を引いた値*/
+    transition: all .6s;/*0.6秒かけてアニメーション*/
+}
+
+.circle-bg.circleactive{
+	transform: scale(50);/*クラスが付与されたらscaleを拡大*/
+}
+
+/*ナビゲーションの縦スクロール*/
+#g-nav-list{
+    display: none;/*はじめは表示なし*/
+    /*ナビの数が増えた場合縦スクロール*/
+    position: fixed;
+    z-index: 999; 
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#g-nav.panelactive #g-nav-list{
+     display: block; /*クラスが付与されたら出現*/
+}
+
+/*ナビゲーション*/
+#g-nav ul {
+	opacity: 0;/*はじめは透過0*/
+    /*ナビゲーション天地中央揃え※レイアウトによって調整してください。不必要なら削除*/
+    position: absolute;
+    z-index: 999;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+/*背景が出現後にナビゲーションを表示*/
+#g-nav.panelactive ul {
+    opacity:1;
+}
+
+/* 背景が出現後にナビゲーション li を表示※レイアウトによって調整してください。不必要なら削除*/
+#g-nav.panelactive ul li{
+animation-name:gnaviAnime;
+animation-duration:1s;
+animation-delay:.2s;/*0.2 秒遅らせて出現*/
+animation-fill-mode:forwards;
+opacity:0;
+}
+@keyframes gnaviAnime{
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
+}
+
+
+/*リストのレイアウト設定*/
+#g-nav li{
+	text-align: center; 
+	list-style: none;
+}
+
+#g-nav li a{
+	color: #333;
+	text-decoration: none;
+	padding:10px;
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: bold;
+}
+
+
+/*========= ボタンのためのCSS ===============*/
+.openbtn{
+	position:fixed;
+	top:50px;
+	right: 20px;
+	z-index: 9999;/*ボタンを最前面に*/
+	cursor: pointer;
+    width: 100px;
+    height:50px;
+}
+	
+/*×に変化*/	
+.openbtn span{
+    display: inline-block;
+    transition: all .4s;
+    position: absolute;
+    left: 14px;
+    height: 3px;
+    border-radius: 2px;
+	background-color: var(--textWhite);
+  	width: 45%;
+  }
+
+.openbtn span:nth-of-type(1) {
+	top:15px;	
+}
+
+.openbtn span:nth-of-type(2) {
+	top:23px;
+}
+
+.openbtn span:nth-of-type(3) {
+	top:31px;
+}
+
+.openbtn.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+    background-color: #674f37;
+}
+
+.openbtn.active span:nth-of-type(2) {
+	opacity: 0;
+    
+}
+
+.openbtn.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+    background-color: #674f37;
+}
+
+
+
+.main_warpper{
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+
+/* header */
+
+.header {
+    height: auto;
+    margin-bottom: 200px;
+}
+
+
+
+.header_logo img{
+    width: 100%;
+}
+
+
+.header_mainvisual {
+    position: relative;
+    
+    width: 95%;
+    margin: 60px auto 0px auto;
+}
+
+.header_mainvisual img{
+    opacity: 1;
+    width: 100%;
+    border-radius: 120px;
+}
+
+.header_logo {
+    width: 17%;
+    position: absolute;
+    top: 40px;
+    left: 47px;
+}
+
+.header_logo h1{
+   display: none;
+}
+
+/* news */
+
+.news_warpper {
+    width: 90%;
+    margin: 0 auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 200px;
+}
+
+.news_left {
+    margin-left: 1.5%; 
+    width: 20%;
+}
+
+.news_right {
+    width: 60%;
+   
+}
+
+.news_title {
+    margin-bottom: 40px;
+}
+.news_title h2{
+    display: none;
+}
+
+.news_title img{
+    width: 100%;
+}
+
+.news_btn {
+	display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+	text-align: center;
+	text-decoration: none;
+	width: 120px;
+	padding: 0.4rem 0.1rem 0.4rem 0.1rem;
+	font-weight: bold;
+	background: var(--textWhite);
+	color: var(--mainGrey);
+	border-radius: 1vh;
+	position: relative;
+	transition: 0.5s;
+}
+.news_btn::after{
+    content: '';
+	width: 7px;
+	height: 7px;
+	border-top: 2px solid var(--mainGrey);
+	border-right: 2px solid var(--mainGrey);
+	transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.news_btn:hover {
+	background: #ffaa7c;
+	color: #fff;
+}
+
+.news_btn:hover::after {
+
+    border-top: 2px solid var(--textWhite);
+	border-right: 2px solid var(--textWhite);
+}
+
+.news_right
+{
+    margin-left: 20%;
+    margin-right: 1.5%; 
+    width: 70%;
+}
+
+.news_item {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+}
+
+.news_image {
+    width: 20%;
+    margin-right: 8px;
+}
+
+.news_image img{
+    width: 100%;
+    transition:0.3s;
+}
+
+.news_image a:hover img{
+    opacity:0.6;
+}
+
+.news_text {
+    width: 75%;
+    display: grid;
+    align-content: end;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.news_text h3 {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.date {
+    font-size: 14px;
+    color: var(--subOrange);
+    padding-left: 0.3em;
+}
+
+.news_text a{
+    text-decoration: none;
+    color: var(--textWhite);
+    font-weight:bold;
+    transition:.3s;
+    padding: 0.1em 0.3em;
+    background-position: 0 0;
+    background-size: 200% auto;
+}
+
+.news_text a:hover{
+    background-image: linear-gradient(to right, #ffaa7c 50%, #fff 50%);/*ホバー時の背景色*/
+    color:var(--mainGrey);/*文字色*/
+    transition:0.6s;
+    background-position: 100% 0;
+
+}
+
+/* menu */
+
+.menu_wrapper {
+    height: auto;
+    position: relative;
+    padding-bottom: 300px;
+}
+
+.menu_title h2 {
+    display: none;
+}
+
+.menu_title {
+    position: relative;
+    text-align: right;
+    padding-top: 1%;
+    margin-left: auto;
+    margin-right: 1.5%;
+    width: 18%;
+    z-index: 1;
+}
+
+
+.menu_row1 ,.menu_row2{
+    position: relative;
+    padding-right: 100px;
+    z-index: 1;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.menu_row1 {
+    margin-bottom: 100px;
+}
+
+.menu_item{
+    text-align: center;
+    height: auto; /* 適應內容高度 */
+    padding: 2%;
+    width: 30%;
+
+}
+
+.menu_image {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.menu_item p {
+
+    margin: 0 auto;
+    line-height: 1.5; /* 提升文字可讀性 */
+}
+
+.menu_item h3{
+    color: #515150;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 1em 0; /* 減少間距 */
+    position: relative;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+
+
+
+.menu_grey {
+    position: absolute;
+    background-color: #505050;
+    background-image: url("../image/menubg.png");
+    background-size: cover;
+    width: 124%;
+    height: 90%;
+    z-index: 0;
+    top: 0;
+    left: -54%;
+    
+}
+
+
+.price {
+    padding-top: 10px;
+    border-bottom: 1px solid #fff;
+}
+
+/* address */
+
+
+.address_warpper {
+    height: auto;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+}
+
+.address_title {
+    text-align: center;
+    width: 37%;
+    margin: 0 auto;
+    margin-bottom:8% ;
+}
+.address_title h2{
+    display: none;
+}
+
+.address_title img{
+    width: 100%;
+}
+
+.address_map {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+
+.address_detail h3{
+
+ font-size: 24px;
+ font-weight: 200;
+ margin-bottom: 30px;
+}
+
+.address_detail p {
+    margin-bottom: 20px;
+}
+
+.footer {
+    background-color: var(--subGrey);
+    color: #232323;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
