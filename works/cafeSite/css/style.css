@@ -1,0 +1,646 @@
+@charset "UTF-8";
+
+/* Reset CSS */
+@import url("reset.css");
+
+/* 共通 */
+* {
+    box-sizing: border-box;
+}
+
+.fadeLeft {
+    animation-name: fadeLeftAnime;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeLeftAnime {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fadeUp {
+    animation-name: fadeUpAnime;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes fadeUpAnime {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.fadeLeftTrigger,
+.fadeUpTrigger {
+    opacity: 0;
+}
+
+/* アニメーションスタートの遅延時間を決めるCSS*/
+
+.delay-time02{  
+	animation-delay: 0.2s;
+}
+
+.delay-time05{  
+	animation-delay: 0.5s;
+}
+
+.delay-time1{  
+	animation-delay: 1s;
+}
+
+
+
+/* 基本要素の指定 */
+body {
+    font-family: "FOT-筑紫Aオールド明朝 Pr6 M", "游明朝", "Yu Mincho", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+    background-color: #EDEDED;
+    color: #0C0707;
+    opacity: 0.2;
+    animation: fadeInmain 2s ease forwards;
+}
+
+.main_about_text_red {
+    color: #A01705;
+}
+
+
+/* ヘッダーエリア
+***********************************************/
+.header {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    align-items: baseline;
+}
+
+
+/* ヘッダー部分・メインビジュアル */
+
+
+.header_mainvisual {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: url("../images/mainvisual.jpg") no-repeat center;
+    background-size: cover;
+    z-index: 1;
+
+}
+
+.header_mainvisual p {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    /* add animation */
+    opacity: 0;
+    animation: fadeInsub 2s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fadeInmain {
+    0% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInsub {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 2;
+    }
+}
+
+
+.header_navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 100vh;
+    z-index: 1000;
+}
+
+.header_navigation.fixed {
+    position: fixed;
+    top: 0;
+}
+
+
+.header_logo {
+    width: 300px;
+    height: 100%;
+}
+
+.header_logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.header_navigation_list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.header_navigation_list li {
+    margin-top: 10%;
+    margin-right: 20px;
+
+}
+
+.header_navigation_list li a {
+    margin-top: 10%;
+    margin-right: 20px;
+    text-decoration: none;
+
+}
+
+.header_navigation ul li a:visited {
+    color: #0C0707;
+}
+
+.header_navigation ul li a:hover {
+    transition: 0.2s;
+    color: #E60012;
+    border-bottom: 1px solid #E60012;
+}
+
+
+/* メイン */
+
+.main {
+    z-index: 2;
+    /* Increased z-index to be higher than mainvisual */
+    background-color: #EDEDED;
+    /* Or any color you want */
+    padding: 600px 0;
+    text-align: center;
+    padding-top: 100px;
+    width: 100%;
+    margin: 0;
+
+}
+
+/* 店詳細 */
+
+
+
+.main_about {
+    position: relative;
+    padding-top: 300px;
+    width: 1046px;
+    height: 1000px;
+    margin: 0 auto;
+}
+
+.main_about_information {
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.main_about_images {
+    position: relative;
+    width: 50%;
+
+}
+
+.main_about_images_item1 {
+    width: 283px;
+    height: 380px;
+    position: absolute;
+    left: -40px;
+    top: -100px;
+
+}
+
+.main_about_images_item2 {
+    width: 210px;
+    height: 225px;
+    left: 33px;
+    top: 280px;
+
+    position: absolute;
+
+}
+
+.main_about_images_item3 {
+    width: 278px;
+    height: 288px;
+    right: -1px;
+    top: 50px;
+
+    position: absolute;
+}
+
+
+.main_about_images_item1 img,
+.main_about_images_item2 img,
+.main_about_images_item3 img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.main_about_text {
+    width: 50%;
+    padding-left: 60px;
+    text-align: center;
+}
+
+.main_about_text p {
+    font-size: 22px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.main_about_catchphrase {
+    text-align: center;
+    margin: 150px 180px 0 180px;
+    background-color: #F4DFD2;
+    font-size: 22px;
+    text-align: center;
+    font-weight: normal;
+}
+
+/* サイト */
+
+.sub_image1 {
+    width: 100%;
+    height: 50vh;
+    background: url("../images/site1.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.sub_image1 p {
+    visibility: hidden;
+}
+
+/* ニュース */
+
+.main_news {
+    position: relative;
+    padding-top: 100px;
+    background-color: #F4E2D2;
+
+}
+
+.main_news_wrapper {
+    width: 1046px;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.main_news_item {
+    margin-bottom: 50px;
+}
+
+.main_news_item a {
+    text-decoration: none;
+    color: #0C0707;
+}
+
+.main_news_item a:visited {
+    color: #0C0707;
+}
+
+.main_news_item a:hover {
+    transition: 0.2s;
+    color: #E60012;
+    border-bottom: 1px solid #E60012;
+}
+
+.main_news_wrapper h2 {
+    font-size: 32px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+
+.main_news_item_date p {
+    color: #A01705;
+    font-size: 15px;
+    margin: 0 470px;
+    border-bottom: 1px solid #A01705;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.main_news_item_text p {
+    text-align: center;
+    font-size: 22px;
+}
+
+.more_button {
+    text-align: right;
+    margin-right: 50px;
+}
+
+.more_button a {
+    --arrow-color: #0C0707;
+    display: inline-flex;
+    align-items: center;
+    color: var(--arrow-color);
+    text-decoration: none;
+    position: relative;
+}
+
+.more_button a::after {
+    border-bottom: 1px solid var(--arrow-color);
+    border-right: 1px solid var(--arrow-color);
+    content: '';
+    width: 30px;
+    height: 10px;
+    position: absolute;
+    left: 100%;
+    transform: skewX(50deg);
+    transition: all .3s;
+}
+
+/* マウスオーバー時の動き */
+.more_button a:hover {
+    color: #A01705;
+}
+
+.more_button a:hover::after {
+    border-bottom: 1px solid #A01705;
+    border-right: 1px solid #A01705;
+    margin-left: 10px;
+    /* マウスオーバー時に少し左に動かす*/
+}
+
+/* メニュー */
+.menu {
+    width: 1200px;
+    height: 2500px;
+    margin: 0 auto;
+    padding-top: 100px;
+    position: relative;
+    margin-bottom: 100px;
+}
+
+
+.menu h2 {
+    font-size: 32px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+
+.menu_item_list {
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.menu_item h3 {
+    font-size: 26px;
+    margin-bottom: 70px;
+    text-align: center;
+    color: #A01705;
+}
+
+.menu_item_list_item {
+    width: 30%;
+    text-align: center;
+}
+
+
+
+.menu_item_list_item_image {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.menu_item_list_item_image img {
+    height: 100%;
+    width: 100%;
+}
+
+.food_title {
+    font-size: 20px;
+}
+
+.food_title {
+    position: relative;
+    display: inline-block;
+    padding: 0 65px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.food_title:before,
+.food_title:after {
+    position: absolute;
+    top: calc(50% - 3px);
+    width: 50px;
+    height: 6px;
+    content: '';
+    border-top: solid 2px #000;
+    border-bottom: solid 2px #000;
+}
+
+.food_title:before {
+    left: 0;
+}
+
+.food_title:after {
+    right: 0;
+}
+
+.food_price {
+    margin-top: 10px;
+    text-align: left;
+    color: #A01705;
+    font-size: 14px;
+}
+
+.food_detail {
+    margin-top: 5pxF;
+    text-align: left;
+}
+
+.food_detail {
+    font-size: 16px;
+}
+
+.menu_item_more {
+    width: 100%;
+    /* 画像の横幅（自由に指定） */
+    height: 480px;
+    position: relative;
+    /* 帯の表示位置の基準とする */
+    margin-bottom: 20px;
+
+}
+
+.menu_item_more img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.menu_item_more p {
+    font-size: 22px;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.menu_item_more:hover p {
+    opacity: 1;
+}
+
+/* サブビジュアル */
+
+.sub_image2 {
+    width: 100%;
+    height: 50vh;
+    background: url("../images/site2.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.sub_image2 p {
+    visibility: hidden;
+}
+
+
+/* アクセス */
+
+.main_access {
+    position: relative;
+    padding-top: 100px;
+    background-color: #F4E2D2;
+}
+
+.main_access_wrapper {
+    width: 1046px;
+    height: 730px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main_access_wrapper h2 {
+    font-size: 32px;
+    margin-bottom: 70px;
+    text-align: center;
+}
+
+.main_access_detail {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main_access_map {
+    width: 40%;
+
+}
+
+.main_access_infomation {
+    margin-top: 15%;
+    width: 50%;
+}
+
+.main_access_infomation_logo {
+    width: 80%;
+    height: auto;
+}
+
+.main_access_infomation_logo img {
+    width: 100%;
+}
+
+.main_access_infomation_text {
+    margin-top: 20px;
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.main_access_infomation_text p {
+    margin-bottom: 20px;
+
+}
+
+
+/* フッター */
+
+.footer {
+    width: 100%;
+    height: 150px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.footer_logo {
+    width: 300px;
+    /* Reduced from 300px */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer_logo img {
+    width: 100%;
+    height: 100%;
+}
+
+.footer_sns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 80px;
+}
+
+.footer_sns img {
+    width: 100%;
+    height: auto;
+}
